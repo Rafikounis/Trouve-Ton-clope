@@ -8,25 +8,9 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import ProposerDesClopes from './components/proposer/ProposerDesClopes';
 import TrouverClopes from './components/trouver/TrouverClopes';
-// import HomeScreen from './components/home/HomeScreen';
+import HomeScreen from './components/home/HomeScreen';
 
-const HomeScreen = ({navigation}) => {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#C8EAC5' }}>
-     
-      <Button 
-        
-        title="Trouver tes clopes"
-        onPress={() => navigation.navigate("Trouve tes clopes")}
-      />
-      <Button 
-        title="Depanner"
-        onPress={() => navigation.navigate("Depanner")}
-      />
 
-    </View>
-  );
-}
 
 
 const Stack = createStackNavigator();
