@@ -10,7 +10,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import ProposerDesClopes from './components/proposer/ProposerDesClopes';
 import TrouverClopes from './components/trouver/TrouverClopes';
 import HomeScreen from './components/home/HomeScreen';
-
+import Compte from './components/profil/Compte';
 
 
 
@@ -18,7 +18,7 @@ import HomeScreen from './components/home/HomeScreen';
 const HomeStack = createStackNavigator();
 const TrouverClopesStack = createStackNavigator();
 const ProposerDesClopesStack = createStackNavigator();
-
+const CompteStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 
@@ -100,6 +100,34 @@ const ProposerDesClopesStackScreen = ({navigation}) =>(
  </ProposerDesClopesStack.Navigator>
 )
 
+const CompteStackScreen = ({navigation}) =>(
+  <CompteStack.Navigator screenOptions={{
+    headerStyle:{
+       backgroundColor: '#009387'
+     },
+     headerTintColor: "#fff",
+     headerTintStyle: {
+       fontWeight: "bold"
+     }
+ }}>
+   
+   <CompteStack.Screen name="Depanner" component={Compte} 
+    options={{
+      title:"Proposer des clopes",
+          headerLeft: () =>(
+            <Icon.Button name= "ios-menu" size={25} 
+            backgroundColor = "#009387" onPress={()=>{navigation.openDrawer()}} 
+            >
+
+            </Icon.Button>
+          )
+
+   }}
+
+   /> 
+ </CompteStack.Navigator>
+)
+
 
 function App() {
   return (
@@ -108,6 +136,7 @@ function App() {
         <Drawer.Screen name="Home" component={HomeStackScreen} />
         <Drawer.Screen name="Trouve tes clopes" component={TrouverClopesStackScreen} />
         <Drawer.Screen name="Depanner" component={ProposerDesClopesStackScreen} />
+        <Drawer.Screen name="Profil" component={CompteStackScreen} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
