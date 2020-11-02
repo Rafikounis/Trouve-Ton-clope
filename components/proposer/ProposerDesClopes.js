@@ -4,12 +4,17 @@ import Icon from 'react-native-vector-icons/AntDesign';
 
 
 const  ProposerDesClopes = () => {
+  const [state, setState] = React.useState({
+    nom : "",
+    tel :"",
+    ville :"",
+  })
     return (
         <View style={styles.proposerForm}>
           <Text style={styles.header}>Dépanner une clope</Text>
-          <TextInput style={styles.nomInput} placeholder="Ton nom"></TextInput>
-          <TextInput style={styles.telInput} placeholder="Ton tel"></TextInput>
-          <TextInput style={styles.villeInput} placeholder="La ville"></TextInput>
+          <TextInput style={styles.nomInput} placeholder="Ton nom" value={state.nom}></TextInput>
+          <TextInput style={styles.telInput} placeholder="Ton tel" value={state.tel}></TextInput>
+          <TextInput style={styles.villeInput} placeholder="La ville" value={state.ville}></TextInput>
 
           <TouchableOpacity style={styles.boutonValider}>
             <Text style={styles.textButtom}> Valider</Text>

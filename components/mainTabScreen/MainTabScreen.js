@@ -9,6 +9,7 @@ import ProposerDesClopes from '../proposer/ProposerDesClopes';
 import TrouverClopes from '../trouver/TrouverClopes';
 import HomeScreen from '../home/HomeScreen';
 import Compte from '../profil/Compte';
+import CreerUnCompte from '../profil/CreerUnCompte';
 
 
 
@@ -17,10 +18,12 @@ const HomeStack = createStackNavigator();
 const TrouverClopesStack = createStackNavigator();
 const ProposerDesClopesStack = createStackNavigator();
 const CompteStack = createStackNavigator();
+const CreerUnCompteStack = createStackNavigator();
 
 const Tab = createMaterialBottomTabNavigator();
 
-const MainTabScreen = () => (
+const 
+MainTabScreen = () => (
     <Tab.Navigator
       initialRouteName="Accueil"
       activeColor="#fff"
@@ -179,4 +182,32 @@ const HomeStackScreen = ({navigation}) =>(
   
      /> 
    </CompteStack.Navigator>
+  )
+
+  const CreerUnCompteStackScreen = ({navigation}) =>(
+    <CreerUnCompteStack.Navigator screenOptions={{
+      headerStyle:{
+         backgroundColor: '#009387'
+       },
+       headerTintColor: "#fff",
+       headerTintStyle: {
+         fontWeight: "bold"
+       }
+   }}>
+     
+     <CreerUnCompteStack.Screen name="CreerUnCompte" component={CreerUnCompte} 
+      options={{
+        title:"CreerUnCompte",
+            headerLeft: () =>(
+              <Icon.Button name= "ios-menu" size={25} 
+              backgroundColor = "#009387" onPress={()=>{navigation.openDrawer()}} 
+              >
+  
+              </Icon.Button>
+            )
+  
+     }}
+  
+     /> 
+   </CreerUnCompteStack.Navigator>
   )

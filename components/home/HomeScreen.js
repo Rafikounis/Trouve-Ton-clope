@@ -10,7 +10,6 @@ const HomeScreen = ({navigation}) => {
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#C8EAC5' }}>
        
         <Button 
-          
           title="Trouver tes clopes"
           onPress={() => navigation.navigate("Trouve tes clopes")}
         />

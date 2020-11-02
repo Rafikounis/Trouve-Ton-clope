@@ -1,5 +1,5 @@
-import React, {useCallback} from 'react';
-import { View,Linking, Text, TouchableOpacity, StyleSheet, TextInput, Button } from 'react-native';
+import * as React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {Auth} from '../../Setup';
 import {SignUpUser, SignInUser, SignOutUser} from '../profil/ApiService';
@@ -14,7 +14,33 @@ const  Compte = ({navigation}) => {
 
   const [user, setUser] = React.useState();
 
-
+  // const signUp =()=> {
+  //   SignUpUser(state.email, state.password)
+  //   .then(data => {
+  //     alert(data);
+  //   })
+  //   .catch(error => {
+  //     alert(error)
+  //   })
+  // };
+  const signIn =() =>{
+    SignInUser(state.email, state.password)
+    .then(data => {
+      alert(data);
+    })
+    .catch(error => {
+      alert(error)
+    })
+  }
+  const signOut =()=> {
+    SignOutUser()
+    .then(data => {
+      alert(data);
+    })
+    .catch(error => {
+      alert(error)
+    })
+  };
   const onAuthStateChanged = user =>{
     setUser(user)
   };
@@ -22,57 +48,27 @@ const  Compte = ({navigation}) => {
     const subscriber = Auth().onAuthStateChanged(onAuthStateChanged);
     return subscriber;
   }, []);
-  const supportedURL = "http://m.me/<PROFIL_NAME>?ref=<REF_PARAM>";
-  
-  const OpenURLButton = ({ url, children }) => {
-    const handlePress = useCallback(async () => {
-      // Checking if the link is supported for links with custom URL scheme.
-      const supported = await Linking.canOpenURL(url);
-  
-      if (supported) {
-        // Opening the link with some app, if the URL scheme is "http" the web link should be opened
-        // by some browser in the mobile
-        await Linking.openURL(url);
-      } else {
-        Alert.alert(`Don't know how to open this URL: ${url}`);
-      }
-    }, [url]);
-  
-    return <Button title={children} onPress={handlePress} />;
-  };
-  
+
 
     return (
         <View style={styles.proposerForm}>
         {/* creer compte  */}
-          {/* <Text style={styles.header}>Deposer votre annonce </Text> */}
-          <OpenURLButton url={supportedURL}>Connectez-vous par messenger</OpenURLButton>
-            <View>
-            
-              <TextInput 
-              keyboardType="default" 
-              style={styles.nomInput} 
-              placeholder="'Messenger'" 
-              value={state.email} 
-              onChangeText={text => setState({...state, email : text})}
-
-            />
-
-            </View>
-          
-          <TextInput 
-            keyboardType="numeric" 
-            secureTextEntry style={styles.telInput} 
-            placeholder="Ton mot de passe" 
-            value={state.password} 
-            onChangeText={text => setState({...state, password : text})}
-
-          />
+          <Text style={styles.header}>Se connecter</Text>
+          <TextInput keyboardType="default" style={styles.nomInput} placeholder="Ton mail" value={state.email} onChangeText={text => setState({...state, email : text})}></TextInput>
+          <TextInput keyboardType="numeric" secureTextEntry style={styles.telInput} placeholder="Ton mot de passe" value={state.password} onChangeText={text => setState({...state, password : text})}></TextInput>
 
           <TouchableOpacity style={styles.boutonValider}>
-            <Text style={styles.textButtom} > Valider</Text>
+            <Text style={styles.textButtom} onPress={signIn}> Valider</Text>
           </TouchableOpacity>
           
+          {/* Se connecter */}
+          {/* <Text style={styles.header}>Creer un compte</Text>
+          <TextInput keyboardType="default" style={styles.nomInput} placeholder="Ton mail" value={state.email} onChangeText={text => setState({...state, email : text})}></TextInput>
+          <TextInput keyboardType="numeric" secureTextEntry style={styles.telInput} placeholder="Ton mot de passe" value={state.password} onChangeText={text => setState({...state, password : text})}></TextInput>
+
+          <TouchableOpacity style={styles.boutonValider}>
+            <Text style={styles.textButtom} onPress={signUp}> Valider</Text>
+          </TouchableOpacity> */}
           <TouchableOpacity style={styles.boutonValider}>
             <Text style={styles.textButtom} onPress={() => navigation.navigate("CreerUnCompte")}> Creer un compte</Text>
           </TouchableOpacity>
@@ -134,8 +130,7 @@ const  Compte = ({navigation}) => {
       color: "#fff",
       borderBottomColor: "#f8f8f8",
       borderBottomWidth: 1,
-    },
-  
+    }
   })
 
   export default Compte;
